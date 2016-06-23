@@ -8,7 +8,7 @@
 #
 pkgname=rstudio-server-git
 _gitname="rstudio"
-pkgver=v0.99.1140.r0.gbad03a5
+pkgver=v0.99.1241.r0.g91422d2
 pkgrel=1
 pkgdesc="A new integrated development environment (IDE) for R programming language"
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ conflicts=('rstudio-server')
 source=('git://github.com/rstudio/rstudio.git'
 	'rstudio-server.service')
 md5sums=('SKIP'
-	'eea28f7865720f6c8d5de12f3f631880')
+	 '35b3b7bc91d1083364eaf5dfd7dbdacc')
          
 
 pkgver() {
@@ -63,16 +63,16 @@ package() {
   install -d "${pkgdir}/etc/pam.d"
   install -Dm 644 "${pkgdir}/usr/lib/rstudio-server/extras/pam/rstudio" "${pkgdir}/etc/pam.d/rstudio"
   # rstudio home directory
-  install -d "${pkgdir}/srv/rstudio"
-#  mv "${pkgdir}/usr/lib/rstudio-server/www" "${pkgdir}/srv/rstudio"
-#  rm -rf "${pkgdir}/usr/lib/rstudio-server/extras"
+  #install -d "${pkgdir}/srv/rstudio"
+  #  mv "${pkgdir}/usr/lib/rstudio-server/www" "${pkgdir}/srv/rstudio"
+  #  rm -rf "${pkgdir}/usr/lib/rstudio-server/extras"
   install -d "${pkgdir}/etc/systemd/system"
   install -Dm 644 "${srcdir}/rstudio-server.service" "${pkgdir}/etc/systemd/system/rstudio-server.service"
   install -d "${pkgdir}/etc/rstudio"
-# vars
-mkdir -p ${pkgdir}/run/rstudio-server ${pkgdir}/lock/rstudio-server ${pkgdir}/var/log/rstudio-server ${pkgdir}/var/lib/rstudio-server
-# lns
-mkdir -p $pkgdir/usr/bin
-ln -s /usr/lib/rstudio-server/bin/rserver $pkgdir/usr/bin/rserver
-ln -s /usr/lib/rstudio-server/bin/rstudio-server $pkgdir/usr/bin/rstudio-server
+  # vars
+  mkdir -p ${pkgdir}/run/rstudio-server ${pkgdir}/lock/rstudio-server ${pkgdir}/var/log/rstudio-server ${pkgdir}/var/lib/rstudio-server
+  # lns
+  mkdir -p $pkgdir/usr/bin
+  ln -s /usr/lib/rstudio-server/bin/rserver $pkgdir/usr/bin/rserver
+  ln -s /usr/lib/rstudio-server/bin/rstudio-server $pkgdir/usr/bin/rstudio-server
 }

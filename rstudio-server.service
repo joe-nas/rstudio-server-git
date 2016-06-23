@@ -6,6 +6,7 @@ After=syslog.target network.target
 ExecStart=/usr/bin/rserver --server-daemonize=0
 ExecStop=/bin/kill -HUP $MAINPID
 KillMode=process
+User=rstudio
 
 [Install]
 WantedBy=multi-user.target
